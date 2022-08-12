@@ -75,10 +75,14 @@ function handleCardClick(event) {
   if (!firstCard || !secondCard){
     console.log('fart')
     firstCard = firstCard || myCard
+    secondCard = myCard === firstCard ? '' : myCard
   }
   console.log(firstCard.className)
   console.log(secondCard.className)
 
+  // 8.12 commit notes
+    // NEED TO FINISH
+      //Its probably worth making a flow chart or something to understand this logic
   
 }
 
