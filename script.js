@@ -63,8 +63,9 @@ let flippedCards = 0;
 let noClicking = false; // what is the point of this variable?
 
 function handleCardClick(event) {
-  // event.preventDefault()
-  // you can use event.target to see which element was clicked
+  if (noClicking) return
+  if (event.target.classList.contains('flipped')) return
+  
   let myCard = event.target;
   myCard.style.backgroundColor = myCard.className;
 
@@ -100,9 +101,7 @@ function handleCardClick(event) {
     }
   }
 
-  // 8.15 commit notes
-  // NEED TO FINISH
-  // still working on the bare minimum requirements according to the exercise prompt. 
+ 
 }
 
 // when the DOM loads
