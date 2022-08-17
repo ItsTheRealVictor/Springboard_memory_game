@@ -42,35 +42,26 @@ let shuffledColors = shuffle(COLORS);
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
 
-class Card
-{
-  constructor()
-  {
-    this.color = null
-    this.flipped = false
-    this.firstChoice = false
-    this.secondChoice = false
+class Card {
+  constructor() {
+    this.color = null;
+    this.flipped = false;
+    this.firstChoice = false;
+    this.secondChoice = false;
   }
-  getColor()
-  {
-    return this.color
+  getColor() {
+    return this.color;
   }
-  flipCard()
-  {
-    this.flipped = true
+  flipCard() {
+    this.flipped = true;
   }
-  chooseFirst()
-  {
-    this.firstChoice = true
+  chooseFirst() {
+    this.firstChoice = true;
   }
-  chooseSecond()
-  {
-    this.secondChoice = true
+  chooseSecond() {
+    this.secondChoice = true;
   }
-
 }
-
-
 
 function createDivsForColors(colorArray) {
   for (let color of colorArray) {
@@ -88,22 +79,22 @@ function createDivsForColors(colorArray) {
   }
 }
 
-
-class ScoreBoard
-{
-  constructor()
-  {
-    this.score = 0
+class ScoreBoard {
+  constructor() {
+    this.score = 0;
   }
 }
 
-
-
-
+let noClicking = false;
 function handleCardClick(event) {
+  let currentCard = new Card();
+  currentCard.color = event.target.classList[0];
+  currentCard.flipped = true
+  currentCard.firstChoice = true
+  
+  
 
-    }
-
+}
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
