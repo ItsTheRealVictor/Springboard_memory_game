@@ -41,6 +41,37 @@ let shuffledColors = shuffle(COLORS);
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
+
+class Card
+{
+  constructor()
+  {
+    this.color = null
+    this.flipped = false
+    this.firstChoice = false
+    this.secondChoice = false
+  }
+  getColor()
+  {
+    return this.color
+  }
+  flipCard()
+  {
+    this.flipped = true
+  }
+  chooseFirst()
+  {
+    this.firstChoice = true
+  }
+  chooseSecond()
+  {
+    this.secondChoice = true
+  }
+
+}
+
+
+
 function createDivsForColors(colorArray) {
   for (let color of colorArray) {
     // create a new div
@@ -57,52 +88,22 @@ function createDivsForColors(colorArray) {
   }
 }
 
-let firstCard = "";
-let secondCard = "";
-let flippedCards = 0;
-let noClicking = false; // what is the point of this variable?
+
+class ScoreBoard
+{
+  constructor()
+  {
+    this.score = 0
+  }
+}
+
+
+
 
 function handleCardClick(event) {
-  if (noClicking) return
-  if (event.target.classList.contains('flipped')) return
-  
-  let myCard = event.target;
-  myCard.style.backgroundColor = myCard.className;
 
-  if (!firstCard || !secondCard) {
-    console.log("fart");
-    firstCard = firstCard || myCard;
-    secondCard = myCard === firstCard ? "" : myCard;
-  }
-
-  if (firstCard && secondCard) {
-    noClicking = true; // why?
-    let gif1 = firstCard.className;
-    let gif2 = secondCard.className;
-
-    if (gif1 === gif2) {
-      flippedCards += 2;
-      //why are the event listeners removed?
-      firstCard.removeEventListener("click", handleCardClick);
-      secondCard.removeEventListener("click", handleCardClick);
-      firstCard = "";
-      secondCard = "";
-      noClicking = false;
-    } else {
-      // if you pick 2 cards of different colors, the first card gets flipped back to white and nothing happens.
-      setTimeout(function(){
-
-        firstCard.style.backgroundColor = ''
-        secondCard.style.backgroundColor = ''
-        firstCard = ''
-        secondCard = ''
-        noClicking = false // why?
-      }, 1000)
     }
-  }
 
- 
-}
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
