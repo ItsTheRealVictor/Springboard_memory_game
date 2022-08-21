@@ -48,6 +48,7 @@ class Card {
     this.flipped = false;
     this.firstChoice = false;
     this.secondChoice = false;
+
   }
   getColor() {
     return this.color;
@@ -86,17 +87,37 @@ class ScoreBoard {
 }
 
 let noClicking = false;
+let count = 0
+const compList = []
 function handleCardClick(event) {
   let currentCard = new Card();
-  currentCard.color = event.target.classList[0];
-  currentCard.flipped = true
-  currentCard.firstChoice = true
-  
-  
+    currentCard.color = event.target.classList[0];
+    currentCard.flipped = true
+    currentCard.firstChoice = true
+    count += 1
+    compList.push(currentCard.color)
+    console.log(compList)
+    // console.log(count)
+    if (compList.length === 2){
+      if(compList[0] === compList[1])
+      {
+        // this block of code runs when the user picks two of the same color. 
+        // sets background color to the color class
+        console.log('SAME')
+        // How do I set the Card() object's background color? That's how the card is 'flipped'
+      }
+      else
+      {
+        console.log('NOT SAME')
+      }
+      //empties the array
+      compList.splice(0, compList.length)
+  }
 
 }
-
 // when the DOM loads
 createDivsForColors(shuffledColors);
 
-/* */
+//COMMIT NOTES 8.20
+// Decent progress, I can now put two cards in an array and compare their values. If they match or not, the array is cleared each time
+// its length reaches 2. I need to figure out how to flip the cards and select the card's newDiv with my Card() object. 
