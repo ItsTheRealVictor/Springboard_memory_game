@@ -45,23 +45,14 @@ let shuffledColors = shuffle(COLORS);
 class Card {
   constructor() {
     this.color = null;
-    this.flipped = false;
-    this.firstChoice = false;
-    this.secondChoice = false;
+    this.target = null
 
   }
   getColor() {
     return this.color;
+ 
   }
-  flipCard() {
-    this.flipped = true;
-  }
-  chooseFirst() {
-    this.firstChoice = true;
-  }
-  chooseSecond() {
-    this.secondChoice = true;
-  }
+
 }
 
 function createDivsForColors(colorArray) {
@@ -87,32 +78,21 @@ class ScoreBoard {
 }
 
 let noClicking = false;
-let count = 0
 const compList = []
+count = 0
 function handleCardClick(event) {
   let currentCard = new Card();
     currentCard.color = event.target.classList[0];
-    currentCard.flipped = true
-    currentCard.firstChoice = true
-    count += 1
+    currentCard.target = event.target
+    currentCard.target.style.backgroundColor = currentCard.color
     compList.push(currentCard.color)
-    console.log(compList)
-    // console.log(count)
     if (compList.length === 2){
-      if(compList[0] === compList[1])
-      {
-        // this block of code runs when the user picks two of the same color. 
-        // sets background color to the color class
-        console.log('SAME')
-        // How do I set the Card() object's background color? That's how the card is 'flipped'
-      }
-      else
-      {
-        console.log('NOT SAME')
-      }
+      
+      console.log(compList)
       //empties the array
       compList.splice(0, compList.length)
-  }
+      count++
+    }
 
 }
 // when the DOM loads
