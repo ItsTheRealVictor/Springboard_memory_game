@@ -45,14 +45,10 @@ let shuffledColors = shuffle(COLORS);
 class Card {
   constructor() {
     this.color = null;
-    this.target = null
-
   }
   getColor() {
     return this.color;
- 
   }
-
 }
 
 function createDivsForColors(colorArray) {
@@ -78,30 +74,39 @@ class ScoreBoard {
 }
 
 let noClicking = false;
-const compList = []
-count = 0
+const compList = [];
+count = 0;
 function handleCardClick(event) {
-  let currentCard = new Card();
+  console.log(count);
+  if (count === 0) {
+    let currentCard = new Card();
     currentCard.color = event.target.classList[0];
-    currentCard.target = event.target
-    currentCard.target.style.backgroundColor = currentCard.color
-    compList.push(currentCard)
-    if (compList.length === 2)
-    {  
-      if (compList[0] === compList[1])
-      {
-        console.log('SAME')
-      } else
-        console.log('NOT SAME')
-      }
-      console.log(compList)
-      //empties the array
-      compList.splice(0, compList.length)
-      count++
+    currentCard.target = event.target;
+    currentCard.target.style.backgroundColor = currentCard.color;
+    compList.push(currentCard.color);
+    count++;
+  } else if (count === 1) {
+    let secondCard = new Card();
+    secondCard.color = event.target.classList[0];
+    secondCard.target = event.target;
+    secondCard.target.style.backgroundColor = secondCard.color;
+    compList.push(secondCard.color);
+    count++;
+    if (compList[0] === compList[1]) {
+      console.log("same");
+      compList.splice(0, compList.length);
+      count = 0;
+    } else {
+      console.log("different");
+      compList.splice(0, compList.length);
+      count = 0;
+    }
   }
+}
+
 // when the DOM loads
 createDivsForColors(shuffledColors);
 
-//COMMIT NOTES 8.20
-// Decent progress, I can now put two cards in an array and compare their values. If they match or not, the array is cleared each time
-// its length reaches 2. I need to figure out how to flip the cards and select the card's newDiv with my Card() object. 
+//8.22 notes
+  // game logic now compares 2 array items. If they are the same, 'same' is logged and the array is cleared. likewise if they are different.
+  // NEED TO FINISH: reset the cards' backgrounds to white if they are not the same
