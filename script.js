@@ -85,16 +85,20 @@ function handleCardClick(event) {
     currentCard.color = event.target.classList[0];
     currentCard.target = event.target
     currentCard.target.style.backgroundColor = currentCard.color
-    compList.push(currentCard.color)
-    if (compList.length === 2){
-      
+    compList.push(currentCard)
+    if (compList.length === 2)
+    {  
+      if (compList[0] === compList[1])
+      {
+        console.log('SAME')
+      } else
+        console.log('NOT SAME')
+      }
       console.log(compList)
       //empties the array
       compList.splice(0, compList.length)
       count++
-    }
-
-}
+  }
 // when the DOM loads
 createDivsForColors(shuffledColors);
 
