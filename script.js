@@ -55,7 +55,7 @@ function createDivsForColors(colorArray) {
   for (let color of colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
-    const scoreDiv = document.createElement('div')
+    
 
     // give it a class attribute for the value we are looping over
     newDiv.classList.add(color);
@@ -68,13 +68,17 @@ function createDivsForColors(colorArray) {
   }
 }
 
+let score = document.querySelector('.score')
+
 class ScoreBoard {
   constructor() {
     this.score = 0;
   }
 }
 
-let noClicking = false;
+
+
+
 const compList = [];
 count = 0;
 function handleCardClick(event) {
@@ -119,6 +123,8 @@ function handleCardClick(event) {
       }
     }
 }
+
+
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
