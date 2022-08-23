@@ -55,6 +55,7 @@ function createDivsForColors(colorArray) {
   for (let color of colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
+    const scoreDiv = document.createElement('div')
 
     // give it a class attribute for the value we are looping over
     newDiv.classList.add(color);
@@ -78,35 +79,50 @@ const compList = [];
 count = 0;
 function handleCardClick(event) {
   console.log(count);
-  if (count === 0) {
+  if (count === 0) 
+  {
     let currentCard = new Card();
     currentCard.color = event.target.classList[0];
     currentCard.target = event.target;
     currentCard.target.style.backgroundColor = currentCard.color;
-    compList.push(currentCard.color);
+    compList.push(currentCard);
     count++;
-  } else if (count === 1) {
-    let secondCard = new Card();
-    secondCard.color = event.target.classList[0];
-    secondCard.target = event.target;
-    secondCard.target.style.backgroundColor = secondCard.color;
-    compList.push(secondCard.color);
-    count++;
-    if (compList[0] === compList[1]) {
-      console.log("same");
-      compList.splice(0, compList.length);
-      count = 0;
-    } else {
-      console.log("different");
-      compList.splice(0, compList.length);
-      count = 0;
+  } 
+  else if (count === 1) 
+  {
+      let secondCard = new Card();
+      secondCard.color = event.target.classList[0];
+      secondCard.target = event.target;
+      secondCard.target.style.backgroundColor = secondCard.color;
+      compList.push(secondCard);
+      count++;
+      if (compList[0].color === compList[1].color) 
+      {
+        console.log("same");
+        compList.splice(0, compList.length);
+
+        count = 0;
+      } 
+      else 
+      {
+        // if cards are different, it resets their colors after one second
+        setTimeout(function()
+        {
+          for(thing of compList)
+          {
+            thing.target.style.backgroundColor = ''
+          }
+          compList.splice(0, compList.length);
+        }, 1000)
+        console.log("different");
+        count = 0;
+      }
     }
-  }
 }
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
 
-//8.22 notes
-  // game logic now compares 2 array items. If they are the same, 'same' is logged and the array is cleared. likewise if they are different.
-  // NEED TO FINISH: reset the cards' backgrounds to white if they are not the same
+//8.23 notes
+  // game is as follows: user can flip 2 cards at a time. If the cards are the same, they stay flipped. If they are different, they flip back over after one second.
+  // NEED TO ADD: scoreboard and end message
