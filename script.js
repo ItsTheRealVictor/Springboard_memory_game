@@ -56,31 +56,25 @@ function createDivsForColors(colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
     
-
     // give it a class attribute for the value we are looping over
     newDiv.classList.add(color);
-
+    
     // call a function handleCardClick when a div is clicked on
     newDiv.addEventListener("click", handleCardClick);
-
+    
     // append the div to the element with an id of game
     gameContainer.append(newDiv);
   }
-}
-
-let score = document.querySelector('.score')
-
-class ScoreBoard {
-  constructor() {
-    this.score = 0;
-  }
+  const score = document.querySelector('.userscore')
+  score.innerText = `Score: ${currentScore}`
 }
 
 
 
 
+let currentScore = 0
 const compList = [];
-count = 0;
+let count = 0;
 function handleCardClick(event) {
   console.log(count);
   if (count === 0) 
@@ -102,9 +96,9 @@ function handleCardClick(event) {
       count++;
       if (compList[0].color === compList[1].color) 
       {
+        currentScore += 1
         console.log("same");
         compList.splice(0, compList.length);
-
         count = 0;
       } 
       else 
