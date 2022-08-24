@@ -118,7 +118,66 @@ function handleCardClick(event) {
       }
     }
   }
-  
+
+function timer() {
+  // code is adapted from a codepen I found at https://codepen.io/cathydutton/pen/xxpOOw
+
+  let seconds = 00
+  let tens = 00
+
+  let appendSeconds = document.querySelector('.seconds')
+  let appendTens = document.querySelector('.tens')
+
+  let startButton = document.querySelector('.button-start')
+  let stopButton = document.querySelector('.button-stop')
+  let resetButton = document.querySelector('.button-reset')
+
+  let intvl;
+  startButton.addEventListener('click', function()
+  {
+    clearInterval(intvl)
+    intvl = setInterval(startTimer, 10)
+  })
+
+  stopButton.addEventListener('click', function()
+  {
+    clearInterval(intvl)
+  })
+
+  resetButton.addEventListener('click', function()
+  {
+    clearInterval(intvl)
+    tens = '00'
+    seconds = '00'
+    appendTens.innerHTML = tens
+    appendSeconds.innerHTML = seconds  
+  })
+
+  function startTimer(){
+
+    tens++
+    if (tens <= 9)
+    {
+      appendTens.innerHTML = '0' + tens
+    }
+    if (tens > 9)
+    {
+      appendTens.innerHTML = tens
+    }
+    if (tens > 99) 
+    {
+      seconds++
+      appendSeconds.innerHTML = '0' + seconds
+      tens = 0
+      appendTens.innerHTML = '0' + 0
+    }
+  }
+  if (seconds > 9)
+  {
+    appendSeconds.innerHTML = seconds
+  }
+}
+timer()
   
 
 // when the DOM loads
@@ -127,3 +186,9 @@ createDivsForColors(shuffledColors);
 //8.24 notes
   // attempting to add a countdown timer. Scores will be based on how quickly the user can match all color pairs. 
   // code is copied from the OOP branch for this first commit to the countDownTimer branch
+
+// timer notes
+  // added codepen excerpt
+  // NEED TO DO. Figure out how to start timer when the very first click happens. Figure out how to stop timer when
+  // score reaches the maximum
+  // FUTURE: save user's name and time score to a leaderboard displayed on page and saved in localStorage
