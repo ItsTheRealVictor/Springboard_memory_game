@@ -42,9 +42,6 @@ let shuffledColors = shuffle(COLORS);
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
 
-
-
-let currentScore = 'fart'
 class Card {
   constructor() {
     this.color = null;
@@ -103,6 +100,7 @@ function handleCardClick(event) {
       count = 0;
       theScore += 1
       score.innerText = theScore
+      return
       } 
       else 
       {
