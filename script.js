@@ -65,17 +65,16 @@ function createDivsForColors(colorArray) {
     // append the div to the element with an id of game
     gameContainer.append(newDiv);
   }
-  const score = document.querySelector('.userscore')
-  score.innerText = `Score: ${currentScore}`
 }
+let theScore = 0
+const score = document.querySelector('.userscore')
+score.innerText = theScore
 
 
-
-
-let currentScore = 0
 const compList = [];
 let count = 0;
 function handleCardClick(event) {
+  
   console.log(count);
   if (count === 0) 
   {
@@ -88,18 +87,20 @@ function handleCardClick(event) {
   } 
   else if (count === 1) 
   {
-      let secondCard = new Card();
-      secondCard.color = event.target.classList[0];
-      secondCard.target = event.target;
-      secondCard.target.style.backgroundColor = secondCard.color;
-      compList.push(secondCard);
-      count++;
-      if (compList[0].color === compList[1].color) 
-      {
-        currentScore += 1
-        console.log("same");
-        compList.splice(0, compList.length);
-        count = 0;
+    let secondCard = new Card();
+    secondCard.color = event.target.classList[0];
+    secondCard.target = event.target;
+    secondCard.target.style.backgroundColor = secondCard.color;
+    compList.push(secondCard);
+    count++;
+    
+    if (compList[0].color === compList[1].color) 
+    {
+      compList.splice(0, compList.length);
+      count = 0;
+      theScore += 1
+      score.innerText = theScore
+      return
       } 
       else 
       {
@@ -116,13 +117,13 @@ function handleCardClick(event) {
         count = 0;
       }
     }
-}
-
-
+  }
+  
+  
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
 
-//8.23 notes
-  // game is as follows: user can flip 2 cards at a time. If the cards are the same, they stay flipped. If they are different, they flip back over after one second.
-  // NEED TO ADD: scoreboard and end message
+//8.24 notes
+  // attempting to add a countdown timer. Scores will be based on how quickly the user can match all color pairs. 
+  // code is copied from the OOP branch for this first commit to the countDownTimer branch
